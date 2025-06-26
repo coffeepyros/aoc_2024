@@ -1,7 +1,8 @@
 // ADVENT OF CODE - DAY 2
 import { loadFile } from "../utils.ts";
 
-const reports: string[] = await loadFile("./test.input");
+// const reports: string[] = await loadFile("./test.input");
+const reports: string[] = await loadFile("./d2-input.txt");
 
 // Trying out the check for ONE report first
 // const reportLevels = reports[1].split(" ");
@@ -23,12 +24,12 @@ reports.forEach((reportString: string) => {
     if (reportLevels[i - 1] < reportLevels[i]) direction = 1;
     else if (reportLevels[i - 1] > reportLevels[i]) direction = -1;
 
-    console.log(i, reportLevels[i - 1], reportLevels[i], direction);
+    // console.log(i, reportLevels[i - 1], reportLevels[i], direction);
 
     // a report is SAFE if all levels are ALL increasing, or decreasing
     // two adjacent levels >= 1 difference or <= 3
     const diff = Math.abs(
-      Number(reportLevels[i - 1]) - Number(reportLevels[i]),
+      Number(reportLevels[i - 1]) - Number(reportLevels[i])
     );
     if (diff < 1 || diff > 3 || (i > 1 && direction != oldDirection)) {
       safeFlag = false;
@@ -36,6 +37,9 @@ reports.forEach((reportString: string) => {
     }
   }
   if (safeFlag) safeReports++;
+  direction = 0;
+  oldDirection = 0;
 
-  console.log(safeFlag, safeReports);
+  // console.log(safeFlag, safeReports)#;
 });
+console.log("No. of safe reports:", safeReports);
