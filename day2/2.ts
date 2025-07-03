@@ -29,7 +29,7 @@ reports.forEach((reportString: string) => {
     // a report is SAFE if all levels are ALL increasing, or decreasing
     // two adjacent levels >= 1 difference or <= 3
     const diff = Math.abs(
-      Number(reportLevels[i - 1]) - Number(reportLevels[i])
+      Number(reportLevels[i - 1]) - Number(reportLevels[i]),
     );
     if (diff < 1 || diff > 3 || (i > 1 && direction != oldDirection)) {
       safeFlag = false;
